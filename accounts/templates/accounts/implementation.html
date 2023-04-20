@@ -1,0 +1,53 @@
+
+{% extends 'accounts/base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:accdetails' %}">ACCOUNTS</a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:reports' %}">REPORTS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:receipts' %}">RECEIPTS</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{%url 'accounts:bills' %}">INVOICES</a>
+            </li>
+          </div>
+    </div>
+</nav>
+<div class="card">
+    <div class="card-header">
+        <center><h3>IMPLEMENTATION DATES DETAILS</h3></center>
+        <div class="card-body">
+            
+            <div class="row">
+                <!-- empty row -->
+                <a href="{% url 'accounts:accdetails' %}">{% include './icons/x-circle-fill.svg' %}</a> 
+            </div>
+            <div class="row"></div>
+                <table id="data">
+                    <tr>
+                    <th>Facility</th>
+                    <th>Start Date</th>
+                    <th>Go-Live Date</th>
+                    <th>End Date</th>
+                    </tr>
+
+                    {% for n in details %}
+                    <tr>
+                    <td>{{ n.facility_name|upper}}</td>
+                    <td>{{ n.start_date }}</td>
+                    <td>{{ n.golive_date }}</td>         
+                    <td>{{n.end_date}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>   
+        </div>
+    </div>
+</div>
+{% endblock %}

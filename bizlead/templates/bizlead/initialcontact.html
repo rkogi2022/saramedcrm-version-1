@@ -1,0 +1,80 @@
+
+{% extends 'bizlead/base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'bizlead:tracker' %}">CONVERSION PROGRESS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'bizlead:businesslead' %}">BUSINESS PROSPECTS</a>
+            </li>
+          </div>
+    </div>
+</nav>
+<div class="card">
+    <div class="card-header">
+        <center><h3>BUSINESS PROSPECTS</h3></center>
+        <div class="card-body">
+            {% if messages %}
+                    {% for message in messages %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-{{ message.tags}}">{{message}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"> 
+                    <a href="{% url 'bizlead:addbusinesslead' %}"><button type="submit" class="btn button-add">Add Prospect</button></a>
+                </div>
+            </div>
+            <div class="row"></div>
+                <table id="data">
+                    <tr>
+                    <th>Name</th>
+                    <th>Town</th>
+                    <th>County</th>
+                    <th>Contact Person</th>
+                    <th>Phone No</th>
+                    <th>Comments</th>
+                    <th>Date</th>
+                 
+                    </tr>
+
+                    {% for n in details %}
+                    <tr>
+                    <td>{{ n.name|upper}}</td>
+                    <td>{{ n.town|upper }}</td>
+                    <td>{{ n.county|upper }}</td>         
+                    <td>{{ n.contact_person|upper }}</td>
+                    <td>{{ n.contact_phone}}</td>
+                    <td>{{ n.comment|linebreaks }}</td>
+                    <td>{{ n.created_date}}</td>
+                  
+                    </tr>
+                    {% endfor %}
+                </table>   
+                <center>
+                    <!-- {{details}} -->
+                    {% if details.has_previous %}
+                        <a href="?page=1">&laquo </a>
+                        <a href="?page={{details.previous_page_number}}"></a>
+                    {% endif %}
+                     {{details.number}}
+
+                    {% if details.has_next %}
+                        <a href="?page={{details.next_page_number}}">&raquo</a>
+                        <a href="?page={{details.paginator.num_pages}}"></a>
+                    {% endif %}
+                </center>  
+        </div>
+    </div>
+</div>
+{% endblock %}

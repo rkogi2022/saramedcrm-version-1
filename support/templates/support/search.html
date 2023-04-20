@@ -1,0 +1,64 @@
+{% extends 'support/base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'support:supportcall' %}">SUPPORT CALLS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'support:courtesycall' %}">COURTESY CALLS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'support:bimonthlycall' %}">DIRECTORS CALLS</a>
+            </li>
+          </div>
+    </div>
+</nav>
+<div class="card">
+    <div class="card-header">
+        <div class="card-body">
+            <div class="row"></div>
+                <table id="data">
+                    <tr>
+                    <th>Facility</th>
+                    <th>Log Date</th>
+                    <th>Module</th>
+                    <th>Problem Description</th>
+                    <th>Support Offered</th>
+                    <th>Status</th>
+                    <th>Completion Date</th>
+                    <th>Action</th>
+                    </tr>
+
+                    {% for n in searcheddetails %}
+                    <tr>
+                    <td>{{n.facility|upper}}</td>
+                    <td>{{n.logdate}}</td>
+                    <td>{{n.module}}</td>         
+                    <td>{{n.problem|linebreaks}}</td>
+                    <td>{{n.solution|linebreaks}}</td>
+                    <td>{{n.status}}</td>
+                    <td>{{n.completiondate}}</td>
+                    <td><a href="">{% include './icons/pencil-fill.svg' %}</a>    <a href="">{% include './icons/trash-fill.svg' %}</a> </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <center>
+                    <!-- {{details}} -->
+                    {% if details.has_previous %}
+                        <a href="?page=1">&laquo </a>
+                        <a href="?page={{details.previous_page_number}}"></a>
+                    {% endif %}
+                     {{details.number}}
+
+                    {% if details.has_next %}
+                        <a href="?page={{details.next_page_number}}">&raquo</a>
+                        <a href="?page={{details.paginator.num_pages}}"></a>
+                    {% endif %}
+                </center>   
+        </div>
+    </div>
+</div>
+{% endblock %}

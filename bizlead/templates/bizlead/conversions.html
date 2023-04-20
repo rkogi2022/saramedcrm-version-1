@@ -1,0 +1,179 @@
+
+{% extends 'bizlead/base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'bizlead:tracker' %}">CONVERSION PROGRESS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'bizlead:businesslead' %}">BUSINESS PROSPECTS</a>
+            </li>
+          </div>
+    </div>
+</nav>
+
+<div class="card">
+    <div class="card-header">
+        <center><h3>CONVERSION PROCESS</h3></center>
+        <div class="card-body">
+            {% if messages %}
+                    {% for message in messages %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-{{ message.tags}}">{{message}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}                
+            {% endif %}
+
+            <div class="row">
+                <div class="card my card shadow text-centre p-3">
+                    <div class="card">
+                        <div class="row">
+                            <table id="data">
+                                <tr>
+                                <th>Name</th>
+                                </tr>
+                                {% for n in demodetails %}
+                                <tr>
+                                <td>{{ n.demo_id|upper}}</a>        
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mytabs">
+                <input type="radio" id="tabdemo" name="mytabs" checked="checked">
+                <label for="tabdemo">DEMO DETAILS</label>
+                <div class="tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Demo Details</h5>
+                            <table id="data">
+                                <thead>
+                                    <tr>
+                                        <th>Activities</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for n in demodetails %}
+                                    <tr>
+                                        <td scope="row">Demo Status</td>
+                                        <td>{{ n.demostatus}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">Demo Date</td>
+                                        <td>{{ n.demodate }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">Attendees</td>
+                                        <td>{{ n.Attendees|linebreaks }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">Meeting</td>
+                                        <td>{{ n.meeting }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">Feedback</td>
+                                        <td>{{ n.feedback|linebreaks }}</td>
+                                    </tr>
+                                        {% empty %}
+                                    <tr>
+                                        <td colspan="5" class="text-centre"><h8>
+                                            No demo details to display
+                                        </h8></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="radio" id="tabsite" name="mytabs">
+                <label for="tabsite">SITE ASSESSMENT DETAILS</label>
+                <div class="tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Site Assessment Details</h5>
+                                <table id="data">
+                                    <thead>
+                                        <tr>
+                                            <th>Activities</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for n in demodetails %}
+                                        <tr>
+                                            <td scope="row">Assessment Date</td>
+                                            <td>{{ n.assessmentdate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">Assessment Report </td>
+                                            <td>{{n.report}}</td>
+                                        </tr>
+                                            
+                                        <tr>
+                                            <td scope="row">Report Dissemination</td>
+                                            <td>{{ n.reportdate }}</td>                                      
+                                        </tr>
+                                        {%  empty %}
+                                        <tr>
+                                            <td colspan="5" class="text-centre"><h8>
+                                                Site assessment details unavailable
+                                            </h8></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table> 
+                        </div>
+                </div>
+                </div>
+
+                <input type="radio" id="tabdoc" name="mytabs">
+                <label for="tabdoc">SUPPORTING DOCUMENTS</label>
+                <div class="tab">
+                    <div class="col-md-12">
+                        <h5>Supporting Documents</h5>
+                        <table id="data">
+                            <thead>
+                                <tr>
+                                    <th>Activities</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for n in demodetails %}
+                                <tr>
+                                    <td scope="row">Expression of Interest</td>
+                                    <td>{{n.expression}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Facility License </td>
+                                    <td>{{n.facility_license}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">KRA PIN</td>
+                                    <td>{{ n.krapin}}</td>     
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-centre"><h8>
+                                        No documents uploaded
+                                    </h8></td>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

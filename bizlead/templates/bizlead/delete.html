@@ -1,0 +1,31 @@
+{% extends 'support/base.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'bizlead:conversiondetails' %}">CONVERSION PROGRESS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'bizlead:businesslead' %}">BUSINESS PROSPECTS</a>
+            </li>
+          </div>
+    </div>
+</nav>
+<div class="col-md-6 offset-md-3">
+    <div class="border bg white p-3">
+        <h3>DELETE DETAILS</h3>
+        <hr>
+        <div class="alert alert-danger">
+            <h4>Are you sure you want to delete</h4>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <a class="btn btn-secondary" href="">Cancel</a>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+        </form>
+    </div>
+</div>
+{% endblock %}

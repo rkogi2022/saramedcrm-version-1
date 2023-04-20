@@ -1,0 +1,93 @@
+<!-- <form action="{% url 'support:supportcallupload' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                            <div class="col-md-8">
+                                <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+                            </div>                    
+                        </div>
+                        <div class="form-group">                    
+                            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                                 <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+                            </div> 
+                        </div>
+                    </form>
+            
+                    <p></p>
+                    <hr>
+            
+                    {% for row in excel_data %}
+                        {% for cell in row %}
+                            {{ cell }}&nbsp;&nbsp;
+                        {% endfor %}
+                        <br>
+                    {% endfor %} -->
+
+
+
+
+                    # def excelread(request):
+#         if request.method == 'POST' and request.FILES ['excel_file']:
+#             myfile=request.FILES['excel_file']
+#             fs = FileSystemStorage()
+#             filename=fs.save(myfile.name, myfile)
+#             uploaded_file_url = fs.url(filename)
+
+#             records= pe.get_records(file_name=settings.BASE_DIR + uploaded_file_url)
+#             for record in records:
+#                 facility= record['Facility'].upper()
+#                 logdate= record['Log Date']
+#                 module= record['Module'].upper()
+#                 problem= record['Problem Description']
+#                 solution= record['Support Offered']
+#                 status= record['Status'].upper()
+#                 completiondate= record['Facility']
+#                 if not(support.objects.filter(problem=problem).exists()):
+#                     support.objects.create(
+#                         facility=facility,
+#                         logdate=logdate,
+#                         module=module,
+#                         problem=problem,
+#                         solution=solution,
+#                         status=status,
+#                         completiondate=completiondate
+#                     )
+#                 else:
+#                     continue
+#                 messages.success(request, 'Success, the data was uploaded successfully')
+#                 return redirect('support:supportcall')
+#             else:
+#                return redirect('support:supportcall') 
+
+
+   # path('supportcall',views.excelread, name='supportcallupload'),
+
+
+
+   registercount = support.objects.filter(module__contains='PATIENT REGISTER').count()
+    nursecount = support.objects.filter(module__contains='NURSE').count()
+    doctorcount = support.objects.filter(module__contains='DOCTOR').count()
+    labcount = support.objects.filter(module__contains='LABORATORY').count()
+    radiographycount = support.objects.filter(module__contains='RADIOGRAPHY').count()
+    inpatientcount = support.objects.filter(module__contains='INPATIENT').count()
+    pharmacycount = support.objects.filter(module__contains='PHARMACY').count()
+    cashiercount = support.objects.filter(module__contains='CASHIER').count()
+    inventorycount = support.objects.filter(module__contains='INVENTORY').count()
+    financecount = support.objects.filter(module__contains='FINANCE').count()
+    humancount = support.objects.filter(module__contains='HUMAN RESOURCE').count()
+    systemcount = support.objects.filter(module__contains='SYSTEM ADMIN').count()
+
+
+
+    'registercount':registercount,
+        'nursecount':nursecount,
+        'doctorcount':doctorcount,
+        'labcount':labcount,
+        'radiographycount':radiographycount,
+        'inpatientcount':inpatientcount,
+        'pharmacycount':pharmacycount,
+        'cashiercount':cashiercount,
+        'inventorycount':inventorycount,
+        'financecount':financecount,
+        'humancount':humancount,
+        'systemcount':systemcount
