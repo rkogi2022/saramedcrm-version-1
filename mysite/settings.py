@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'accounts',
     'support',
     'bizlead',
-    'users',
     'overview',
     'crispy_forms',
 ]
