@@ -20,11 +20,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls', namespace='accounts')),
-    path('', include('support.urls', namespace='support')),
-    path('', include('bizlead.urls', namespace='bizlead')),
-    path('', include('users.urls', namespace='users')),
-    path('',include('overview.urls', namespace='overview')),
+    path('', include(('accounts.urls','accounts'), namespace='accounts')),
+    path('', include(('support.urls', 'support'), namespace='support')),
+    path('', include(('bizlead.urls','bizlead'), namespace='bizlead')),
+    path('', include(('overview.urls','overview'), namespace='overview')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

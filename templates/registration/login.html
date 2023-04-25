@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="container py-5">
+                <center>
+                    <h3>SaraMed CRM</h3>
+                <form method="POST">
+                  {% csrf_token %}
+                  {{ login_form.as_p }}
+                  <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+                <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+            </div>
+        </center>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}
+
