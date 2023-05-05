@@ -11,7 +11,7 @@ from .forms import AddClient
 
 #create your views here
 def bills(request):
-    billingdetails=Bill.objects.all()
+    billingdetails=Bill.objects.all().order_by('-id')
     p=Paginator(billingdetails,6)
     # getting the desired page number from url
     page_number = request.GET.get('page')
