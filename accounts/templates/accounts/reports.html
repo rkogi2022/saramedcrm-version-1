@@ -31,18 +31,18 @@
                     <th>Project Cost</th>
                     <th>Paid Amount</th>
                     <th>Pending Amount</th>
-                    <th>Action</th>
                     </tr>
 
-                    {% for n in context %}
+                    {% for key in totalamt %}
                     <tr>
-                    <td>{{n.name|upper}}</td>
-                    <td>{{n.project_cost}}</td>
-                    <td>{{n.paid}}</td>         
-                    <td>{{n.balance}}</td>
-                    <td><a href="#">{% include './icons/pencil-fill.svg' %}</a>    <a href="#">{% include './icons/trash-fill.svg' %}</a> </td>
+                    <td>{{key.invoice|upper}}</td>   
+                    <td></td>
+                    <td>{{key.amt_paid__sum}}</td>   
+                    {% endfor %}  
+                    <td></td>
+                    
                     </tr>
-                    {% endfor %}
+                    
                 </table>   
                 <center>
                     <!-- {{details}} -->

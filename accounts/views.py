@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.contrib import messages
+from django.db.models import Sum, Count
+
 from .models import Bill
 from .forms import AddNewBill
 from .models import Receipts
 from .forms import CreateReceipt
-from .models import Account
+from .models import Account, Report
 from .forms import AddClient
 
 #create your views here
@@ -32,12 +34,13 @@ def addnewbill(request):
         return render(request, 'accounts/addbill.html',{'addnewbill_form':addnewbill})
 
 def receipts(request):
+    paid_amount= Receipts.objects.aggregate(Sum('amt_paid'))
     receiptsdetails=Receipts.objects.all().order_by('-id')
     p=Paginator(receiptsdetails,6)
     # getting the desired page number from url
     page_number = request.GET.get('page')
     details=p.get_page(page_number)
-    return render(request,'accounts/receipts.html',{'receiptsdetails':receiptsdetails,'details':details})
+    return render(request,'accounts/receipts.html',{'paid_amount':paid_amount,'receiptsdetails':receiptsdetails,'details':details})
 
 def addreceipt(request):
     addreceipt=CreateReceipt()
@@ -75,11 +78,23 @@ def addreceipt_update(request, id):
     return render(request,'accounts/detailsupdate.html',context)
 
 def reports(request):
-    p=Paginator(details,6)
-    # getting the desired page number from url
-    page_number = request.GET.get('page')
-    details=p.get_page(page_number)
-    return render(request,'accounts/reports.html',{})
+    name_details=Bill.objects.values('clientname','total_cost')
+    totalamt=Receipts.objects.values('invoice').annotate(Sum('amt_paid'))
+
+    for key in totalamt:
+        print('Key=',key)
+        
+    # p=Paginator(reportdetails,6)
+    # # getting the desired page number from url
+    # page_number = request.GET.get('page')
+    # details=p.get_page(page_number)
+    context={
+        'name_details':name_details,
+        'totalamt':totalamt
+
+        #'details':details
+        }
+    return render(request,'accounts/reports.html',context)
 
 
 def accdetails(request):

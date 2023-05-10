@@ -34,7 +34,11 @@
             {% endif %}
                 <div class="row">
                     <div class="col-md-5"></div>
-                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-warning">
+                            Total Amount <span class="badge bg-secondary">{{paid_amount}}</span>
+                          </button>
+                    </div>
                     <div class="col-md-2"> 
                         <a href="{% url 'accounts:addreceipt' %}"><button type="submit" class="btn button-add">Add Receipt</button></a>
                     </div>

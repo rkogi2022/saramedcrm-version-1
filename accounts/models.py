@@ -63,5 +63,8 @@ class Report(models.Model):
     paid=models.PositiveIntegerField(default=0)
     balance=models.PositiveIntegerField(default=0)
 
+    def save(self, *args, **kwargs):
+        self.balance=self.project_cost - self.paid
+        return super().save(*args, **kwargs)
     def __str__(self):
         return f'{self.name}'
