@@ -26,4 +26,4 @@ class AddClient(forms.ModelForm):
     end_date=forms.DateField(label='End Date',widget=DateInput)
     class Meta:
         model=Account
-        fields=('town','county','start_date','golive_date','end_date')
+        fields=('facility_name','town','county','start_date','golive_date','end_date')

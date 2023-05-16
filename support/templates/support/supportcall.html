@@ -20,15 +20,6 @@
     <div class="card-header">
         <center><h3>SUPPORT CALLS LOG</h3></center>
         <div class="card-body">
-            {% if messages %}
-                    {% for message in messages %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-{{ message.tags}}">{{message}}</div>
-                        </div>
-                    </div>
-                    {% endfor %}                
-            {% endif %}
             <div class="row">
                 <div class="col-md-5">
                     <form class="d-flex" action="{% url 'support:searchbar' %}" method="GET">

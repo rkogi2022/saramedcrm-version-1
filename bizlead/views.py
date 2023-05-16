@@ -27,7 +27,7 @@ def addbusinesslead(request):
         addnewbusiness=AddNewBizleadForm(request.POST)
         if addnewbusiness.is_valid():
             addnewbusiness.save()
-            messages.success(request, 'Prospect added successfully!!')
+            messages.success(request, f'Prospect added successfully!!')
             return redirect('bizlead:businesslead')
         else:
             return HttpResponse('Incorrect Form Formart')
@@ -40,7 +40,7 @@ def adddemo(request):
         adddemodetails=AddDemoForm(request.POST)
         if adddemodetails.is_valid():
             adddemodetails.save()
-            messages.success(request, 'Demo details added successfully!!')
+            messages.success(request, f'Demo details added successfully!!')
             return redirect('bizlead:tracker')
         else:
             return HttpResponse('Incorrect Form Formart')

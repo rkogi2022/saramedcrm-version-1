@@ -26,7 +26,7 @@ def addnewbill(request):
         addnewbill=AddNewBill(request.POST)
         if addnewbill.is_valid():
             addnewbill.save()
-            messages.success(request, 'Billing created successfully!!')
+            messages.success(request, f'Billing created successfully!!')
             return redirect('accounts:bills')
         else:
             return HttpResponse('Incorrect Form Formart')
@@ -48,7 +48,7 @@ def addreceipt(request):
         addreceipt=CreateReceipt(request.POST)
         if addreceipt.is_valid():
             addreceipt.save()
-            messages.success(request, 'Receipt Added successfully!!')
+            messages.success(request, f'Receipt Added successfully!!')
             return redirect('accounts:receipts')
         else:
             return HttpResponse('Incorrect Form Formart')
@@ -111,7 +111,7 @@ def addclientacc(request):
         addnewclient=AddClient(request.POST)
         if addnewclient.is_valid():
             addnewclient.save()
-            messages.success(request, 'Account created successfully!!')
+            messages.success(request, f'Account created successfully!!')
             return redirect('accounts:accdetails')
         else:
             return HttpResponse('Incorrect Form Formart')

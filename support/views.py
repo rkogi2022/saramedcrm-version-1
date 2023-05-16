@@ -39,7 +39,7 @@ def addsupportcall(request):
         addsupportcall=AddNewClient(request.POST)
         if addsupportcall.is_valid():
             addsupportcall.save()
-            messages.success(request, 'Support Call Logged Successfully!!')
+            messages.success(request, f'Support Call Logged Successfully!!')
             return redirect('support:supportcall')
         else:
             return HttpResponse('Incorrect Form Formart')
@@ -84,7 +84,7 @@ def addcourtesycall(request):
         addcourtesycall=AddCourtesyCall(request.POST)
         if addcourtesycall.is_valid():
             addcourtesycall.save()
-            messages.success(request, 'Courtsey Call Logged Successfully!!')
+            messages.success(request, f'Courtsey Call Logged Successfully!!')
             return redirect('support:courtesycall')
         else:
             return HttpResponse('Incorrect Form Formart')
@@ -127,7 +127,7 @@ def addbimonthlycall(request):
         addbimonthlycall=AddBimonthlyCall(request.POST)
         if addbimonthlycall.is_valid():
             addbimonthlycall.save()
-            messages.success(request, ' Call Logged Successfully!!')
+            messages.success(request, f'Call Logged Successfully!!')
             return redirect('support:bimonthlycall')
         else:
             return HttpResponse('Incorrect Form Formart')
