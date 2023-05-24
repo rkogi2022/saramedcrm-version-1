@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 
 class AddNewClient(forms.ModelForm):
     logdate=forms.DateTimeField(label='Date',widget=DateInput)
-    completiondate=forms.DateTimeField(label='Date',widget=DateInput)
+    completiondate=forms.DateTimeField(label='Date',widget=DateInput,required=False)
     class Meta:
         model=support
         fields=('__all__')

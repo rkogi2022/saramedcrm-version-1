@@ -28,7 +28,7 @@ class support(models.Model):
     module=models.CharField(max_length=30,choices=module, default='PATIENT REGISTER')
     problem=models.TextField(null=True,blank=True)
     solution=models.TextField(null=True,blank=True)
-    status=models.CharField(max_length=20,choices=status, default='DONE')
+    status=models.CharField(max_length=20,choices=status, default='PENDING')
     completiondate=models.DateField(blank=True,null=True)
 
     def __str__(self):
